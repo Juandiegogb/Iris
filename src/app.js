@@ -6,13 +6,11 @@ const myconnection = require("express-myconnection");
 const app = express();
 const loginRoutes = require("./routes/login");
 
-
-app.use(express.static(path.join(__dirname, "public")));
-
 //settings
 app.set("PORT", process.env.PORT || 3000);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+app.set("public", path.join(__dirname, "public"));
 app.listen(app.get("PORT"));
 app.use(morgan("dev"));
 
@@ -30,4 +28,5 @@ app.use(morgan("dev"));
 
 // //app
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use("/", loginRoutes);
